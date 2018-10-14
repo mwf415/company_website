@@ -251,10 +251,10 @@ exports.checkUser = function(req, res) {
     var password=req.body.password;
     var captcha=req.body.captcha;
 
-    if(captcha!=req.session.captcha){
-        console.log('captcha error');
-        res.json({'status':'captcha error'});
-    }else{ //验证码正确
+    // if(captcha!=req.session.captcha){
+    //     console.log('captcha error');
+    //     res.json({'status':'captcha error'});
+    // }else{ //验证码正确
         User.findOne({username:username},function(err,doc){
             if(err){
                 console.log('error');
@@ -263,10 +263,10 @@ exports.checkUser = function(req, res) {
             else if(doc==null){
                 console.log('not exist');
                 res.json({'status':'not exist'});
-            }else if(doc.status==='0'){
-                //如果是刚注册的用户，还未授权无法登陆。
-                console.log('unchecked');
-                res.json({'status':'unchecked'});
+            // }else if(doc.status==='0'){
+            //     //如果是刚注册的用户，还未授权无法登陆。
+            //     console.log('unchecked');
+            //     res.json({'status':'unchecked'});
             }else if(doc.password===password){
                 console.log('success');
                 //登录成功，将user保存到session中
@@ -277,7 +277,7 @@ exports.checkUser = function(req, res) {
                 res.json({'status':'password error'});
             }
         });
-    }
+    // }
 };
 //用户登出操作
 exports.logout = function(req, res) {
@@ -294,10 +294,10 @@ exports.post_register = function(req, res) {
     var phone=req.body.phone;
     var captcha=req.body.captcha;
 
-    if(captcha!=req.session.captcha){
-        console.log('captcha error');
-        res.json({'status':'captcha error'});
-    }else{//验证码正确
+    // if(captcha!=req.session.captcha){
+    //     console.log('captcha error');
+    //     res.json({'status':'captcha error'});
+    // }else{//验证码正确
         var user=new User(
             {
                 username:username,
@@ -322,7 +322,7 @@ exports.post_register = function(req, res) {
                 });
             }
         });
-    }
+    // }
 
 };
 
