@@ -437,6 +437,26 @@ exports.user_del= function(req, res) {
     }
 };
 
+//删除一个base
+
+exports.base_del= function(req, res) {
+
+    if(req.session.user.status!='2'){
+        //0表示普通用户，1表示已授权普通用户，2表示高级用户
+        res.json({"status":"noRight"});
+    }else{
+        var id=req.body.id;
+        User.remove({_id:id},function(err,doc){
+            if(err){
+                res.json({"status":"error"});
+            }else{
+                res.json({"status":"success"})
+            }
+        });
+    }
+};
+
+
 // 分页获取离职公示
 exports.get_feedbacks = function(req, res) {
     var curr=req.body.curr;

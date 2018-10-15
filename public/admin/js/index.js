@@ -20,6 +20,8 @@ layui.config({
 
 	//设置navbar
 	navbar.set({
+
+
 		elem: '#admin-navbar-side',
 		data: navs
 		/*cached:true,

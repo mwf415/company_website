@@ -10,7 +10,11 @@ var navs = [{
 		"title": "添加管理员",
 		"icon": "&#xe63c;",
 		"href": "add_admin.html"
-	}]
+	}, {
+        "title": "baseName",
+        "icon": "&#xe63c;",
+        "href": "base_list.html"
+    }]
 }, {
 	"title": "新闻中心",
 	"icon": "fa-cogs",

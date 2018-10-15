@@ -42,6 +42,7 @@ module.exports = function(app) {
   app.post('/admin/get_users', Admin.get_users);
   //删除管理员信息
   app.post('/admin/user_del', Admin.user_del);
+  app.post('/admin/base_del', Admin.base_del);
 
   //提交登录信息，实现登录信息校验
   app.post('/login',Admin.checkUser);
