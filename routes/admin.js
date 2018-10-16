@@ -40,6 +40,7 @@ module.exports = function(app) {
   app.post('/admin/post_user', Admin.add_admin);
   //分页获取管理员
   app.post('/admin/get_users', Admin.get_users);
+  app.get('/admin/get_bases', Admin.get_bases);
   //删除管理员信息
   app.post('/admin/user_del', Admin.user_del);
   app.post('/admin/base_del', Admin.base_del);

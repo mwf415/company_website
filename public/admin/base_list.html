@@ -135,49 +135,51 @@
 
 		//从后台获取数据函数，获取页数curr的数据
 		function getData(curr){
-			$.post("/admin/get_users",{curr:curr},function(result){
-				//拼接html内容
-				var tabContent="";
-				//获取后台json数据
-				var mydata=result.data;
+			$.get("/admin/get_bases",{curr:curr},function(result){
+			    alert(result);
+				// //拼接html内容
+				// var tabContent="";
+				// //获取后台json数据
+				// var mydata=result.data;
+				//
+				// for(var i=0;i<mydata.length;i++){
+				// 	var rightStr='普通管理员'
+				// 	if(mydata[i].status==='0'){
+				// 		rightStr='<span class="layui-btn layui-btn-normal layui-btn-mini">待授权</span>'
+				// 	}if(mydata[i].status==='2'){
+				// 		rightStr='<span class="layui-btn layui-btn-warm layui-btn-mini">超级管理员</span>'
+				// 	}
+				//
+				// 	var tempStr='<tr id='+mydata[i]._id+'>'+
+				// 				/*序号分页后也必须得变动,每页十条数据*/
+				// 			'<td>'+(i+(curr-1)*10+1)+'</td>'+
+				// 			'<td>'+mydata[i].username+'</td>'+
+				// 			'<td>'+mydata[i].password+'</td>'+
+				// 			'<td>'+mydata[i].realname+'</td>'+
+				// 			'<td>'+mydata[i].phone+'</td>'+
+				// 			'<td>'+rightStr+'</td>'+
+				// 			'<td>'+
+				// 			'<span class="layui-btn layui-btn-danger layui-btn-mini">删除</span>'+
+				// 			'</td>'+
+				// 			'</tr>'
+				// 	tabContent=tabContent+tempStr;
+				// }
+				// //将拼接好的数据填入#tabContent中
+				// $("#tabContent").html(tabContent);
+				// //显示分页
+				// laypage({
+				// 	cont: 'page', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+				// 	pages: result.pages, //通过后台拿到的总页数
+				// 	curr: curr || 1, //当前页
+				// 	jump: function(obj, first){ //触发分页后的回调
+				// 		if(!first){ //点击跳页触发函数自身，并传递当前页：obj.curr
+				// 			getData(obj.curr);
+				// 		}
+				// 	}
+				// });
 
-				for(var i=0;i<mydata.length;i++){
-					var rightStr='普通管理员'
-					if(mydata[i].status==='0'){
-						rightStr='<span class="layui-btn layui-btn-normal layui-btn-mini">待授权</span>'
-					}if(mydata[i].status==='2'){
-						rightStr='<span class="layui-btn layui-btn-warm layui-btn-mini">超级管理员</span>'
-					}
-
-					var tempStr='<tr id='+mydata[i]._id+'>'+
-								/*序号分页后也必须得变动,每页十条数据*/
-							'<td>'+(i+(curr-1)*10+1)+'</td>'+
-							'<td>'+mydata[i].username+'</td>'+
-							'<td>'+mydata[i].password+'</td>'+
-							'<td>'+mydata[i].realname+'</td>'+
-							'<td>'+mydata[i].phone+'</td>'+
-							'<td>'+rightStr+'</td>'+
-							'<td>'+
-							'<span class="layui-btn layui-btn-danger layui-btn-mini">删除</span>'+
-							'</td>'+
-							'</tr>'
-					tabContent=tabContent+tempStr;
-				}
-				//将拼接好的数据填入#tabContent中
-				$("#tabContent").html(tabContent);
-				//显示分页
-				laypage({
-					cont: 'page', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
-					pages: result.pages, //通过后台拿到的总页数
-					curr: curr || 1, //当前页
-					jump: function(obj, first){ //触发分页后的回调
-						if(!first){ //点击跳页触发函数自身，并传递当前页：obj.curr
-							getData(obj.curr);
-						}
-					}
-				});
-
-			});
+			}
+			);
 		};
 
 	});

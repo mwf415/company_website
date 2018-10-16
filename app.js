@@ -14,7 +14,11 @@ var app = express();
 var mongoose=require('./config/mongoose.js');
 var db=mongoose();
 
+var proxy = require('http-proxy-middleware');
+// 跨域插件
+var cors = require('cors');
 
+app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', require('ejs').__express);
@@ -27,6 +31,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/jygoods-api', proxy({
+    target: 'http://localhost:9182',
+    changeOrigin: true
+}));
 
 //这里周期只设置为20秒，为了方便测试
 //secret在正式用的时候务必修改
@@ -83,19 +91,19 @@ app.get('/captcha', function (req, res) {
 require('./routes/index')(app);
 
 /*官网后台做操作是需要，登录验证*/
-app.use(function(req,res,next){
-  if (!req.session.user) {
-    if(req.url=="/login"||req.url=="/register"){
-      next();//如果请求的地址是登录则通过，进行下一个请求
-    }
-    else
-    {
-      res.redirect('/login');
-    }
-  } else if (req.session.user) {
-    next();
-  }
-});
+// app.use(function(req,res,next){
+//   if (!req.session.user) {
+//     if(req.url=="/login"||req.url=="/register"){
+//       next();//如果请求的地址是登录则通过，进行下一个请求
+//     }
+//     else
+//     {
+//       res.redirect('/login');
+//     }
+//   } else if (req.session.user) {
+//     next();
+//   }
+// });
 /*后台登录验证*/
 
 require('./routes/admin')(app);
