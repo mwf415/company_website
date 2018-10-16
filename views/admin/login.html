@@ -71,10 +71,32 @@
 
 		</div>
 
+		<input type="button" value="测试跨域"  onclick="test()">
+
 	</div>
 
 
 	<script type="text/javascript" src="/admin/plugins/layui/layui.js"></script>
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script>
+        function test(){
+            var url = 'http://localhost:9182/test';
+            $.ajax({
+                url:url,
+                dataType:'json',
+                processData: false,
+                type:'get',
+                success:function(data){
+                    alert(data.code);
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status);
+
+                }});
+        }
+
+	</script>
+
 		<script>
 			layui.use(['layer', 'form'], function() {
 				var layer = layui.layer,

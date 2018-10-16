@@ -421,48 +421,6 @@ exports.get_users = function(req, res) {
 };
 
 
-// 分页获取离职公示
-exports.get_bases = function(req, res) {
-    var curr=req.body.curr;
-    //每页大小为10
-    var query=User.find({});
-    query.skip((curr-1)*10);
-    query.limit(10);
-    var url = 'http://localhost:9182/test';
-
-    $.ajax({
-        url:url,
-        dataType:'jsonp',
-        processData: false,
-        type:'get',
-        success:function(data){
-            alert(data.name);
-        },
-        error:function(XMLHttpRequest, textStatus, errorThrown) {
-            alert(XMLHttpRequest.status);
-            alert(XMLHttpRequest.readyState);
-            alert(textStatus);
-        }});
-
-
-
-    // $.ajax({
-    //     type: get,
-    //     datatpye: "json",
-    //     cache: false,
-    //     url: url,
-    //     success: function (err, rs) {
-    //         if (err) {
-    //             res.send(err);
-    //         } else {
-    //                 jsonArray = {data: rs, pages: pages};
-    //                 res.json(jsonArray);
-    //
-    //         }
-    //     }
-    // })
-
-};
 //删除一个管理员
 exports.user_del= function(req, res) {
 

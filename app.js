@@ -14,11 +14,6 @@ var app = express();
 var mongoose=require('./config/mongoose.js');
 var db=mongoose();
 
-var proxy = require('http-proxy-middleware');
-// 跨域插件
-var cors = require('cors');
-
-app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', require('ejs').__express);
@@ -31,10 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/jygoods-api', proxy({
-    target: 'http://localhost:9182',
-    changeOrigin: true
-}));
+
 
 //这里周期只设置为20秒，为了方便测试
 //secret在正式用的时候务必修改
